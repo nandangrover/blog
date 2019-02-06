@@ -6,6 +6,7 @@ import MarkdownIt from 'markdown-it';
 // import PropTypes from "prop-types";
 import { Button, Form, FormGroup, Label, Input, FormText, Container } from 'reactstrap';
 import NavBar from "./NavBar";
+import axios from "axios";
 
 let md= new MarkdownIt();
 class CMS extends Component {
@@ -29,10 +30,18 @@ class CMS extends Component {
         
         if (file) {
           let data = new FormData();
-          console.log(data,file);
-          
           data.append('file', file);
-          // axios.post('/files', data)...
+          const config = {
+            headers: {
+                'content-type': 'multipart/form-data'
+            }
+        }
+          axios
+          .post("/api/CMS/titleImg", data, config)
+          .then((data) => {
+            console.log(data);
+            
+          })
        }
   }
   

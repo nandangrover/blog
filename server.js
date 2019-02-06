@@ -4,10 +4,10 @@ const bodyParser = require('body-parser');
 const passport = require("passport");
 const users = require("./routes/api/users");
 const path = require('path');
-// const items = require('./routes/api/blog');
-
-
+const CMS = require("./routes/api/CMS");
 const app = express();
+
+// Grid.mongo = mongoose.mongo;
 
 app.use(bodyParser.json());
 
@@ -15,21 +15,32 @@ app.use(bodyParser.json());
 const db = require('./config/keys').mongoURI;
 
 // Connect to Mongo
+// var db = mongoose.connection.db;
+// var mongoDriver = mongoose.mongo;
 
 mongoose
   .connect(db, {
     useNewUrlParser: true
   })
-  .then(() => console.log('MongoDb connected ...'))
+  .then(() => { 
+    // var gfs = new Grid(db, mongoDriver);
+    // module.exports = gfs;
+    // console.log(gfs);
+    
+    // app.set('gridfs', gfs);
+    console.log('MongoDb connected ...')}
+    )
   .catch(err => console.log(err));
 
-// app.use('/api/blog', items);
+// app.use('/api/blog', items)
 
 app.use(passport.initialize());
 // Passport config
 require("./config/passport")(passport);
 //User validation
 app.use("/api/users", users);
+//CMS
+app.use("/api/CMS", CMS);
 
 //Serve static assets if in production
 if (process.env.NODE_ENV === 'production') {
