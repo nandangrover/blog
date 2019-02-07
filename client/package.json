@@ -17,6 +17,7 @@
     "reactstrap": "^7.0.2",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
+    "textarea-markdown": "^1.2.4",
     "uuid": "^3.3.2"
   },
   "scripts": {

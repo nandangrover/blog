@@ -15,9 +15,9 @@ cloudinary.config({
 
 const storage = cloudinaryStorage({
   cloudinary: cloudinary,
-  folder: "demo",
+  folder: "CMS",
   allowedFormats: ["jpg", "png"],
-  transformation: [{ width: 500, height: 500, crop: "limit" }]
+  transformation: [{ crop: "limit" }]
   });
 
 const parser = multer({ storage: storage });
@@ -29,7 +29,7 @@ const parser = multer({ storage: storage });
 // var mongoDriver = mongoose.mongo;
 // var gridfs = new Gridfs(db, mongoDriver);
 
-router.post('/titleImg', parser.single("file"),  function (req, res) {
+router.post('/images', parser.single("file"),  function (req, res) {
   // console.log(req.file) // to see what is returned to you
   const image = {};
   image.url = req.file.url;
