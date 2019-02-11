@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import "../css/TopNavigationBar.css";
+import styles from "../css/TopNavigationBar.module.css";
 // import logo from "../assets/images/logo.png";
 
 // eslint-disable-next-line react/require-render-return
@@ -9,12 +9,16 @@ class DashBoard extends Component {
   }
 
  showLink = () => {
+  //  console.log(styles.topNav);
+   
   let x = document.getElementById("topNav");
-  // let logo = document.getElementById("logo");
-  if (x.className === "navHead") {
-    x.className += " responsive";
+  // let logo = document.getElementById({styles.logo});
+  // console.log(x.className,styles.navHead);
+  
+  if (x.className === styles.navHead) {
+    x.className += ` ${styles.responsive}`;
   } else {
-    x.className = "navHead";
+    x.className = styles.navHead;
     // logo.style.display = 'inline-flex';
   }
  }
@@ -22,22 +26,22 @@ class DashBoard extends Component {
   render() {
     return (
       <div>
-        <div className='navHead' id='topNav'>
-        {/* <img src={logo} className="logo" id="logo" alt="logoImg"/> */}
-        {/* <div className="logo" id="logo">Logo</div> */}
-        <div className="logo" id="logo">Nandan Grover</div>
-        <div className='leftNav'>
-         <div className='links' id='home'>Home</div>
-         <div className='links' id='about'>About</div>
-         <div className='links' id='archieve'>Archive</div>
-         <div className='links' id='contact'>Contact Me</div>
-         <div className='icon' onClick={this.showLink}><i className="fa fa-bars"></i></div>
+        <div className={styles.navHead} id="topNav">
+        {/* <img src={logo} className={styles.logo} id={styles.logo} alt="logoImg"/> */}
+        {/* <div className={styles.logo} id={styles.logo}>Logo</div> */}
+        <div className={styles.logo} id={styles.logo}>Nandan Grover</div>
+        <div className={styles.leftNav}>
+         <div className={styles.links} id='home'>Home</div>
+         <div className={styles.links} id='about'>About</div>
+         <div className={styles.links} id='archieve'>Archive</div>
+         <div className={styles.links} id='contact'>Contact Me</div>
+         <div className={styles.icon} onClick={this.showLink}><i className="fa fa-bars"></i></div>
         </div>
         </div>
         {/* <div className='rightNav'>
-         <div className='links' id='facebook'>Facebook</div>
-         <div className='links' id='insta'>Insta</div>
-         <div className='links' id='search'>Search</div>
+         <div className={styles.links} id='facebook'>Facebook</div>
+         <div className={styles.links} id='insta'>Insta</div>
+         <div className={styles.links} id='search'>Search</div>
         </div> */}
        
       </div>
