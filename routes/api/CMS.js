@@ -6,6 +6,7 @@ let multer = require('multer');
 const cloudinary = require("cloudinary");
 const cloudinaryStorage = require("multer-storage-cloudinary");
 const Image = require('../../models/Images');
+const CMS = require('../../models/CMS');
 
 cloudinary.config({
   cloud_name: require('../../config/keys').CLOUD_NAME,
@@ -22,13 +23,6 @@ const storage = cloudinaryStorage({
 
 const parser = multer({ storage: storage });
 
-// const Item = require('../../models/blog');
-
-// const app = require('../../server');
-// const db = require('../../config/keys').mongoURI;
-// var mongoDriver = mongoose.mongo;
-// var gridfs = new Gridfs(db, mongoDriver);
-
 router.post('/images', parser.single("file"),  function (req, res) {
   // console.log(req.file) // to see what is returned to you
   const image = {};
@@ -38,30 +32,27 @@ router.post('/images', parser.single("file"),  function (req, res) {
   Image.create(image) // save image information in database
     .then(newImage => res.json(image.url))
     .catch(err => console.log(err));
-  
-  // var gridfs = router.get('gridfs');
-//   console.log(gridfs);
-//   var file = req.file;
-  
-//   console.log(gridfs);
-  
-//  var writeStream = gridfs.createWriteStream({
-//   filename: file.originalname,
-//   content_type: file.mimetype,
-//   // metadata: req.body.postText,
-//  });
-//  writeStream.on('close', function (file) {
-//      res.send(`File has been uploaded ${file._id}`);
-//  });
-//  req.pipe(writeStream);
+
 });
 
-//GET http://localhost:3000/file/[mongo_id_of_file_here]
-router.get('/titleImg/:fileId', function (req, res) {
- var gridfs = app.get('gridfs');
- gridfs.createReadStream({
-     _id: req.params.fileId // or provide filename: 'file_name_here'
- }).pipe(res);
-});
+router.post('/article', (req, res) => {
+  const newArticle = new CMS({
+    user: req.body.user,
+    profilePic: req.body.profilePic,
+    title: req.body.title,
+    titleImage: req.body.titleImage,
+    articleDesc: req.body.articleDesc,
+    articleContent: req.body.articleContent
+  });
+  newArticle.save().then(article => res.json(article));
+})
+
+router.get('/article', (req, res) => {
+  CMS.find()
+    .sort({
+      date: -1
+    })
+    .then(articles => res.json(articles))
+})
 
 module.exports = router;

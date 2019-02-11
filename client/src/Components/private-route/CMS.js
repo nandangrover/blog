@@ -8,6 +8,7 @@ import TextareaMarkdown from 'textarea-markdown'
 import { Button, Form, FormGroup, Label, Input, FormText, Container, ListGroup, ListGroupItem } from 'reactstrap';
 import NavBar from "./NavBar";
 import axios from "axios";
+import isEmpty from 'is-empty';
 
 let md= new MarkdownIt();
 class CMS extends Component {
@@ -19,40 +20,18 @@ class CMS extends Component {
       title: "",
       articleDesc: "",
       profilePic: "",
-      articleContent:""
+      articleContent:"",
+      isEmpty: false
     };
   }
   onChange = e => { 
     // new TextareaMarkdown(e.target);
     // console.log(e.target.value);
-    this.setState({articleContent:md.render(e.target.value)})
-    console.log(md.render(e.target.value));
+    this.setState({articleContent:md.render(e.target.value), isEmpty:false})
+    // console.log(md.render(e.target.value));
     
   }
 
-  componentDidMount() {
-    let data = new FormData();
-    this.setState({data: data});
-
-    //Textarea markdown
-  // const token = document.querySelector("meta[name=\"csrf-token\"]").content;
-  // const textarea = document.querySelector('#editor');
-  // const token = document.querySelector("meta[name=\"csrf-token\"]").content;
- 
-  // new TextareaMarkdown(textarea, {
-  //   endPoint: 'http://localhost:5000//api/CMS/images',
-  //   paramName: 'file',
-  //   responseKey: 'url',
-  //   csrfToken: token,
-  //   placeholder: 'uploading %filename ...'
-  // })
-  
-  
-  }
-  componentDidUpdate() {
-    console.log(this.state);
-  }
- 
   getImages = e => {
     let file = e.target.files[0];
         // console.log(file);
@@ -71,7 +50,7 @@ class CMS extends Component {
           .then((data) => {
             // console.log(data.data, key);
             if (key !== undefined) {
-              this.setState({[key]:data.data})
+              this.setState({[key]:data.data, isEmpty:false})
             }
             
           })
@@ -81,6 +60,30 @@ class CMS extends Component {
   markdown = e => {
     this.setState({articleContent:md.render(e.target.value)})
   }
+
+  submit = e => {
+    Object.keys(this.state).forEach((key) => {
+      if (isEmpty(this.state[key])) {
+        this.setState({isEmpty: true})
+      }
+    })
+    if (!this.state.isEmpty) {
+      const article = {
+        user: this.props.auth.user,
+        profilePic: this.state.profilePic,
+        title: this.state.title,
+        titleImage: this.state.titleImage,
+        articleDesc: this.state.articleDesc,
+        articleContent: this.state.articleContent
+      }
+      axios
+          .post("/api/CMS/article", article)
+          .then((data) => {
+            console.log(data);
+            
+          })
+    }
+  }
   
   render() {
     return (
@@ -88,17 +91,23 @@ class CMS extends Component {
         <NavBar />
       <Container>
       <div className="CMS">
+      <div style={{
+  "margin": "auto",
+  "width": "100%",
+  "color": "red",
+  "textAlign": "center",
+  "fontSize": "20px"}}>{this.state.isEmpty? "Fill out every field": null}</div>
       <FormGroup>
           <Label for="File">Title Image</Label>
           <Input type="file" name="titleImage" id="titleImageInput" getref="attachments" onChange={this.getImages}/>
         </FormGroup>
       <FormGroup>
           <Label for="Title">Title</Label>
-          <Input type="email" name="title" id="title" placeholder="Write your article's title" onChange={(e) => { this.setState({title: e.target.value})}}/>
+          <Input type="email" name="title" id="title" placeholder="Write your article's title" onChange={(e) => { this.setState({title: e.target.value, isEmpty:false})}}/>
       </FormGroup>
       <FormGroup>
           <Label for="articleDesc">Article Description</Label>
-          <Input type="email" name="articleDesc" id="articleDesc" placeholder="Article Description" onChange={(e) => { this.setState({articleDesc: e.target.value})}}/>
+          <Input type="email" name="articleDesc" id="articleDesc" placeholder="Article Description" onChange={(e) => { this.setState({articleDesc: e.target.value, isEmpty:false})}}/>
         </FormGroup>
         <FormGroup>
           <Label for="File">Profile Pic for Article</Label>
@@ -120,7 +129,7 @@ class CMS extends Component {
           <Input type="textarea" name="textarea" id="articleContent" onChange={this.markdown}/>
           <div dangerouslySetInnerHTML={{__html: this.state.articleContent}}></div>
         </FormGroup>
-        <Button color="primary" size="lg" active>Submit</Button>{' '}
+        <Button color="primary" size="lg" active onClick={this.submit}>Submit</Button>
       </div>
       </Container>
       </div>
@@ -128,6 +137,7 @@ class CMS extends Component {
   }
 }
 const mapStateToProps = state => ({
+  auth: state.auth
 });
 
 // CMS.propTypes = {

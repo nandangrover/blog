@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import NavBar from "./NavBar";
 import { Link } from "react-router-dom";
+// import "../../css/material.min.css";
 class Landing extends Component {
   render() {
     return (
@@ -10,7 +11,6 @@ class Landing extends Component {
           <div className="row" style={{ margin: "auto" }}>
             <div className="col s12 center-align">
               <h4>Admin Panel</h4>
-              <p className="flow-text grey-text text-darken-1">Hello World.</p>
               <br />
               <Link
                 style={{
@@ -21,7 +21,7 @@ class Landing extends Component {
                 className="btn btn-large waves-effect waves-light hoverable blue accent-3"
                 to="/privateroute/avadakedavara/Register"
               >
-                Register
+              <button style={{cursor: "pointer"}}>Register</button>
               </Link>
               <Link
                 style={{
@@ -34,7 +34,7 @@ class Landing extends Component {
                 to="/privateroute/avadakedavara/Login"
               >
                 {" "}
-                Log In
+                <button style={{cursor: "pointer"}}>Log In</button>
               </Link>
             </div>
           </div>
