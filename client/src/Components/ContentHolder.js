@@ -21,85 +21,34 @@ class ContentHolder extends Component {
   }
 
   render() {
-    console.log(this.props.articles);
+    // console.log(this.props.articles);
+    const {articles} = this.props.articles;
+    const {loading} = this.props.articles;
+    console.log(this.props.articles.loading);
+    
     
     return (
       <Container>
+        {loading ? (<div className={styles.loader}><img src={require('../assets/images/loader.gif')} alt="loader" className="loader"></img></div>) : null}
       <div className={styles.ContentHolder}>
-      <div className={styles.article} id="1">
-      {/* <div className={styles.titleImage}></div> */}
-      <img src={require('../assets/images/test.jpeg')} alt={styles.titleImage} className={styles.titleImage}></img>
-      <div className={styles.title}>DOM Selectors Explained</div>
-      <div className={styles.articleDesc}>Understanding DOM selectors to write better code in JavaScript.</div>
-      <div className={styles.userProfile}>
-      {/* <div className={styles.profilePic}></div> */}
-      <img src={require('../assets/images/logo_transparent.png')} alt={styles.profilePic} className={styles.profilePic}></img>
-      <div className={styles.userInfoWrapper}>
-      <div className={styles.userName}>Nandan Grover</div>
-      <div className={styles.date}>Feb 4</div>
-      </div>
-      </div>
-      </div>
-      <div className={styles.article} id="2">
-      <img src={require('../assets/images/test.jpeg')} alt={styles.titleImage} className={styles.titleImage}></img>
-      <div className={styles.title}>DOM Selectors Explained</div>
-      <div className={styles.articleDesc}>Understanding DOM selectors to write better code in JavaScript.</div>
-      <div className={styles.userProfile}>
-      <img src={require('../assets/images/logo_transparent.png')} alt={styles.profilePic} className={styles.profilePic}></img>
-      <div className={styles.userInfoWrapper}>
-      <div className={styles.userName}>Nandan Grover</div>
-      <div className={styles.date}>Feb 4</div>
-      </div>
-      </div>
-      </div>
-      <div className={styles.article} id="3">
-      <img src={require('../assets/images/test.jpeg')} alt={styles.titleImage} className={styles.titleImage}></img>
-      <div className={styles.title}>DOM Selectors Explained</div>
-      <div className={styles.articleDesc}>Understanding DOM selectors to write better code in JavaScript.</div>
-      <div className={styles.userProfile}>
-      <img src={require('../assets/images/logo_transparent.png')} alt={styles.profilePic} className={styles.profilePic}></img>
-      <div className={styles.userInfoWrapper}>
-      <div className={styles.userName}>Nandan Grover</div>
-      <div className={styles.date}>Feb 4</div>
-      </div>
-      </div>
-      </div>
-      <div className={styles.horizontalLine}></div>
 
-
-
-       <div className={styles.article} id="1">
-      {/* <div className={styles.titleImage}></div> */}
-      <img src={require('../assets/images/test.jpeg')} alt={styles.titleImage} className={styles.titleImage}></img>
-      <div className={styles.title}>DOM Selectors Explained</div>
-      <div className={styles.articleDesc}>Understanding DOM selectors to write better code in JavaScript.</div>
-      <div className={styles.userProfile}>
-      <div className={styles.profilePic}></div>
-      <div className={styles.userName}>Nandan Grover</div>
-      <div className={styles.date}>Feb 4</div>
-      </div>
-      </div>
-      <div className={styles.article} id="2">
-      <img src={require('../assets/images/test.jpeg')} alt={styles.titleImage} className={styles.titleImage}></img>
-      <div className={styles.title}>DOM Selectors Explained</div>
-      <div className={styles.articleDesc}>Understanding DOM selectors to write better code in JavaScript.</div>
-      <div className={styles.userProfile}>
-      <div className={styles.profilePic}></div>
-      <div className={styles.userName}>Nandan Grover</div>
-      <div className={styles.date}>Feb 4</div>
-      </div>
-      </div>
-      <div className={styles.article} id="3">
-      <img src={require('../assets/images/test.jpeg')} alt={styles.titleImage} className={styles.titleImage}></img>
-      <div className={styles.title}>DOM Selectors Explained</div>
-      <div className={styles.articleDesc}>Understanding DOM selectors to write better code in JavaScript.</div>
-      <div className={styles.userProfile}>
-      <div className={styles.profilePic}></div>
-      <div className={styles.userName}>Nandan Grover</div>
-      <div className={styles.date}>Feb 4</div>
-      </div>
-      </div>
-      <div className={styles.horizontalLine}></div>
+      {articles.map(({articleContent, _id,  articleDesc, profilePic, title, date, titleImage, user}, index) =>(
+        <React.Fragment key={index}>
+        <div className={styles.article} key= {index + "article"} id={index + "-article-wrapper"}>
+         <img src={titleImage} alt={styles.titleImage} key= {index + "titleImage"} className={styles.titleImage}></img>
+         <div className={styles.title} key= {index + "title"} >{title}</div>
+         <div className={styles.articleDesc} key= {index + "articleDesc"} >{articleDesc}</div>
+         <div className={styles.userProfile} key= {index + "userProfile"}>
+         <img src={profilePic} key= {index + "profilePic"} alt={styles.profilePic} className={styles.profilePic}></img>
+         <div className={styles.userInfoWrapper} key= {index + "userInfoWrapper"}>
+         <div className={styles.userName} key= {index + "userName"}>{user[0][0]['name']}</div>
+         <div className={styles.date} key= {index + "date"} >{date}</div>
+         </div>
+         </div>
+         </div>
+         {((index+1) % 3 === 0) && (index !== 0) ? (<div key= {index + "horizontalLine"} className={styles.horizontalLine}></div>) : null}
+         </React.Fragment>
+      ))}
       </div>
       </Container>
     );
