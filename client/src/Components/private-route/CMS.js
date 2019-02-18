@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { registerUser } from "../../actions/authAction";
 import MarkdownIt from 'markdown-it';
-import TextareaMarkdown from 'textarea-markdown'
+// import TextareaMarkdown from 'textarea-markdown'
 // import PropTypes from "prop-types";
-import { Button, Form, FormGroup, Label, Input, FormText, Container, ListGroup, ListGroupItem } from 'reactstrap';
+import { Button, FormGroup, Label, Input, Container, ListGroup, ListGroupItem } from 'reactstrap';
 import NavBar from "./NavBar";
 import axios from "axios";
 import isEmpty from 'is-empty';

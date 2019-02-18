@@ -5,4 +5,5 @@ export const SET_CURRENT_USER = "SET_CURRENT_USER";
 //CMS
 export const ITEMS_LOADING = "ITEMS_LOADING";
 export const ARTICLE_LIST = "ARTICLE_LIST";
+export const ARTICLE_CONTENT = "ARTICLE_CONTENT";
 

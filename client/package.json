@@ -8,6 +8,7 @@
     "is-empty": "^1.2.0",
     "jwt-decode": "^2.2.0",
     "markdown-it": "^8.4.2",
+    "moment": "^2.24.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-redux": "^6.0.0",

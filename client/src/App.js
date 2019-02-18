@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Provider } from 'react-redux';
 import DashBoard from './Components/DashBoard';
@@ -12,6 +12,7 @@ import setAuthToken from "./utils/setAuthToken";
 import { setCurrentUser, logoutUser } from "./actions/authAction";
 import PrivateRoute from "./Components/PrivateRoute";
 import CMS from "./Components/private-route/CMS";
+import Article from "./Components/Article";
 
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
@@ -38,6 +39,7 @@ const App = ({ store }) => (
       <div>
         {/* <AppNavBar /> */}
         <Route exact path="/" component={DashBoard} />
+        <Route path="/article/" component={Article} />
         <Route exact path="/privateroute/avadakedavara/landing" component={Landing} />
         <Route exact path="/privateroute/avadakedavara/register" component={Register} />
         <Route exact path="/privateroute/avadakedavara/login" component={Login} />

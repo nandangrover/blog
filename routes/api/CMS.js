@@ -55,4 +55,9 @@ router.get('/article', (req, res) => {
     .then(articles => res.json(articles))
 })
 
+router.get('/singleArticle/:id', (req, res) => {
+  CMS.findById(req.params.id)
+    .then(articles => res.json(articles))
+})
+
 module.exports = router;

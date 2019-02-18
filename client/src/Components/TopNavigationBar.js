@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styles from "../css/TopNavigationBar.module.css";
+import { Link } from "react-router-dom";
 // import logo from "../assets/images/logo.png";
 
 // eslint-disable-next-line react/require-render-return
@@ -31,7 +32,7 @@ class DashBoard extends Component {
         {/* <div className={styles.logo} id={styles.logo}>Logo</div> */}
         <div className={styles.logo} id={styles.logo}>Nandan Grover</div>
         <div className={styles.leftNav}>
-         <div className={styles.links} id='home'>Home</div>
+         <Link className={styles.links} id='home' to = '/'>Home</Link>
          <div className={styles.links} id='about'>About</div>
          <div className={styles.links} id='archieve'>Archive</div>
          <div className={styles.links} id='contact'>Contact Me</div>
