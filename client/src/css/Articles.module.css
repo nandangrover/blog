@@ -52,3 +52,9 @@
   margin: auto;
   display: table;
 }
+
+@media screen and (max-width: 600px) {
+  .article {
+    padding: 0px 20px;
+  }
+}
