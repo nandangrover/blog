@@ -43,6 +43,25 @@ a:hover {
   font-size: 17px;
   cursor: pointer;
 }
+.svgSearchIcon {
+  position: relative;
+  top: 13px;
+  left: 20px;
+  display: inline-flex;
+  cursor: pointer;
+}
+.hiddenIcons {
+  display: inline-flex;
+  /* color: black; */
+  padding-left: 10px;
+}
+.signUp {
+  display: -webkit-box;
+    /* background-color: white; */
+    top: 12px;
+    color: #ffffff;
+    position: relative;
+}
 .navHead .icon {
   display: none;
   color: white;
@@ -78,7 +97,7 @@ a:hover {
     float: right;
     display: inline-flex;
   }
-  .navHead .logo {
+  .navHead .hiddenIcons {
     display: inline-flex;
   }
 }
@@ -99,7 +118,7 @@ a:hover {
     display: block;
     text-align: left;
   }
-  .navHead.responsive .logo {
+  .navHead.responsive .hiddenIcons {
     display: none;
   }
 }
