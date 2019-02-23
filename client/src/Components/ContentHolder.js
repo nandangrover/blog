@@ -34,7 +34,6 @@ class ContentHolder extends Component {
     // console.log(this.props.articles);
     const { articles } = this.props.articles;
     const { loading } = this.props.articles;
-    // console.log(articles);
 
 
     return (

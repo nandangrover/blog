@@ -48,9 +48,8 @@ class CMS extends Component {
       axios
         .post("/api/CMS/images", data, config)
         .then((data) => {
-          // console.log(data.data, key);
           if (key !== undefined) {
-            this.setState({ [key]: data.data, isEmpty: false })
+            this.setState({ [key]: data.data.replace('http', 'https'), isEmpty: false })
           }
 
         })
