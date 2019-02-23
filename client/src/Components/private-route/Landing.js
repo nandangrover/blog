@@ -21,7 +21,7 @@ class Landing extends Component {
                 className="btn btn-large waves-effect waves-light hoverable blue accent-3"
                 to="/privateroute/avadakedavara/Register"
               >
-              <button style={{cursor: "pointer"}}>Register</button>
+                <button style={{ cursor: "pointer" }}>Register</button>
               </Link>
               <Link
                 style={{
@@ -34,7 +34,7 @@ class Landing extends Component {
                 to="/privateroute/avadakedavara/Login"
               >
                 {" "}
-                <button style={{cursor: "pointer"}}>Log In</button>
+                <button style={{ cursor: "pointer" }}>Log In</button>
               </Link>
             </div>
           </div>

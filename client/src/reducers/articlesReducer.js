@@ -10,7 +10,7 @@ const initialState = {
   loading: true
 };
 
-export default function(state = initialState, action) {
+export default function (state = initialState, action) {
   switch (action.type) {
     case ARTICLE_LIST:
       return {
@@ -24,11 +24,11 @@ export default function(state = initialState, action) {
         loading: true
       };
     case ARTICLE_CONTENT:
-    return {
-      ...state,
-      individualArticle: action.payload,
-      loading: false
-    };
+      return {
+        ...state,
+        individualArticle: action.payload,
+        loading: false
+      };
     default:
       return state;
   }

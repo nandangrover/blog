@@ -12,18 +12,18 @@ cloudinary.config({
   cloud_name: require('../../config/keys').CLOUD_NAME,
   api_key: require('../../config/keys').API_KEY,
   api_secret: require('../../config/keys').API_SECRET
-  });
+});
 
 const storage = cloudinaryStorage({
   cloudinary: cloudinary,
   folder: "CMS",
   allowedFormats: ["jpg", "png"],
   transformation: [{ crop: "limit" }]
-  });
+});
 
 const parser = multer({ storage: storage });
 
-router.post('/images', parser.single("file"),  function (req, res) {
+router.post('/images', parser.single("file"), function (req, res) {
   // console.log(req.file) // to see what is returned to you
   const image = {};
   image.url = req.file.url;

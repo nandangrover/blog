@@ -22,18 +22,19 @@ mongoose
   .connect(db, {
     useNewUrlParser: true
   })
-  .then(() => { 
+  .then(() => {
     // var gfs = new Grid(db, mongoDriver);
     // module.exports = gfs;
     // console.log(gfs);
-    
+
     // app.set('gridfs', gfs);
-    console.log('MongoDb connected ...')}
-    )
+    console.log('MongoDb connected ...')
+  }
+  )
   .catch(err => console.log(err));
 
 // app.use('/api/blog', items)
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();

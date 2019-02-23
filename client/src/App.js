@@ -13,6 +13,7 @@ import { setCurrentUser, logoutUser } from "./actions/authAction";
 import PrivateRoute from "./Components/PrivateRoute";
 import CMS from "./Components/private-route/CMS";
 import Article from "./Components/Article";
+import SearchPage from "./Components/SearchPage";
 
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
@@ -39,12 +40,13 @@ const App = ({ store }) => (
       <div>
         {/* <AppNavBar /> */}
         <Route exact path="/" component={DashBoard} />
-        <Route path="/article/" component={Article} />
+        <Route path="/article" component={Article} />
+        <Route path="/search" component={SearchPage} />
         <Route exact path="/privateroute/avadakedavara/landing" component={Landing} />
         <Route exact path="/privateroute/avadakedavara/register" component={Register} />
         <Route exact path="/privateroute/avadakedavara/login" component={Login} />
         <Switch>
-        <PrivateRoute exact path="/privateroute/avadakedavara/CMS" component={CMS} />
+          <PrivateRoute exact path="/privateroute/avadakedavara/CMS" component={CMS} />
         </Switch>
         {/* <Route exact path="/App" component={App} /> */}
       </div>
