@@ -34,8 +34,6 @@ class SearchPage extends Component {
   }
 
   submit = (e) => {
-    console.log(e.keyCode);
-    
     if (e.keyCode === 13 || !e.keyCode) {
       this.props.history.push({
         pathname: '/search',
