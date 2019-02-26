@@ -1,12 +1,14 @@
 import {
   ARTICLE_LIST,
   ITEMS_LOADING,
-  ARTICLE_CONTENT
+  ARTICLE_CONTENT,
+  SEARCHED_ARTICLE
 } from "../actions/types";
 
 const initialState = {
   articles: [],
   individualArticle: [],
+  searchedList: [],
   loading: true
 };
 
@@ -27,6 +29,12 @@ export default function (state = initialState, action) {
       return {
         ...state,
         individualArticle: action.payload,
+        loading: false
+      };
+    case SEARCHED_ARTICLE:
+      return {
+        ...state,
+        searchedList: action.payload,
         loading: false
       };
     default:

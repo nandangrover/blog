@@ -35,6 +35,7 @@ router.post('/images', parser.single("file"), function (req, res) {
 
 });
 
+//Posting new article from the private route
 router.post('/article', (req, res) => {
   const newArticle = new CMS({
     user: req.body.user,
@@ -55,9 +56,17 @@ router.get('/article', (req, res) => {
     .then(articles => res.json(articles))
 })
 
+//For articles route: Gets article for every click of an article
 router.get('/singleArticle/:id', (req, res) => {
   CMS.findById(req.params.id)
     .then(articles => res.json(articles))
 })
 
+//Search route: Search page
+router.get("/search/:id", (req, res) => {
+  const v = req.params.id;
+  const regex = new RegExp(`${v}`, "i", "g");
+  CMS.find({ title: { $regex: regex } })
+    .then(users => res.json(users));
+});
 module.exports = router;
