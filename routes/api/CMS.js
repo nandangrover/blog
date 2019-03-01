@@ -65,8 +65,9 @@ router.get('/singleArticle/:id', (req, res) => {
 //Search route: Search page
 router.get("/search/:id", (req, res) => {
   const v = req.params.id;
-  const regex = new RegExp(`${v}`, "i", "g");
+  const regex = new RegExp(`(?<![\w\d])${v}(?![\w\d])`, "i", "g");
   CMS.find({ title: { $regex: regex } })
-    .then(users => res.json(users));
+    .then(users => res.json(users))
+    .catch(err => res.json(err));
 });
 module.exports = router;

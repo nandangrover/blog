@@ -14,6 +14,7 @@ import PrivateRoute from "./Components/PrivateRoute";
 import CMS from "./Components/private-route/CMS";
 import Article from "./Components/Article";
 import SearchPage from "./Components/SearchPage";
+import SignUp from "./Components/SignUp";
 
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
@@ -42,6 +43,7 @@ const App = ({ store }) => (
         <Route exact path="/" component={DashBoard} />
         <Route path="/article" component={Article} />
         <Route path="/search" component={SearchPage} />
+        <Route exact path="/signup" component={SignUp} />
         <Route exact path="/privateroute/avadakedavara/landing" component={Landing} />
         <Route exact path="/privateroute/avadakedavara/register" component={Register} />
         <Route exact path="/privateroute/avadakedavara/login" component={Login} />

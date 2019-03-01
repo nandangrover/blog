@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import styles from "../css/TopNavigationBar.module.css";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
 import SearchModal from "./SearchModal.js";
 // import logo from "../assets/images/logo.png";
@@ -34,18 +36,22 @@ class TopNavigationBar extends Component {
       // logo.style.display = 'inline-flex';
     }
   }
+
   searchModal = () => {
     this.setState({ searchModal: !this.state.searchModal }, () => {
-      console.log(this.state.searchModal);
+      // console.log(this.state.searchModal);
       if (this.state.searchModal) {
         this.setState({ display: "none" });
       } else {
         this.setState({ display: "inline-flex" })
       }
     })
+  }
 
-
-
+  showSignUp = () => {
+    this.props.history.push({
+      pathname: '/signup'
+    });
   }
 
   render() {
@@ -53,7 +59,7 @@ class TopNavigationBar extends Component {
       <div>
         <div className={styles.navHead} id="topNav">
           <div className={styles.hiddenIcons}>
-            <div className={styles.links}>Sign In</div>
+            <div className={styles.links} onClick={this.showSignUp}>Sign In</div>
             <svg className={styles.svgSearchIcon} id="searchIcon" style={{ display: this.state.display }} fill="#fff" width="25" height="25" onClick={this.searchModal}><path d="M20.067 18.933l-4.157-4.157a6 6 0 1 0-.884.884l4.157 4.157a.624.624 0 1 0 .884-.884zM6.5 11c0-2.62 2.13-4.75 4.75-4.75S16 8.38 16 11s-2.13 4.75-4.75 4.75S6.5 13.62 6.5 11z"></path></svg>
           </div>
           {this.state.searchModal ? (<SearchModal toggleSearch={this.searchModal} />) : null}
@@ -70,5 +76,10 @@ class TopNavigationBar extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+});
 
-export default TopNavigationBar;
+export default connect(
+  mapStateToProps,
+  {}
+)(withRouter(TopNavigationBar));
