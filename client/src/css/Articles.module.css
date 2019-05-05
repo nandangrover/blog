@@ -6,7 +6,9 @@
   margin-top: 160px;
 }
 img {
-  max-width: 670px;
+  display: flex;
+  width: 100%;
+  margin: auto;
 }
 .article {
   margin-top: 60px;
