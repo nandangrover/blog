@@ -5,6 +5,9 @@
   /* height: 100px; */
   margin-top: 160px;
 }
+img {
+  max-width: 670px;
+}
 .article {
   margin-top: 60px;
   padding: 0px 130px;
