@@ -29,7 +29,7 @@
   margin-left: 20px;
   padding-top: 14px;
 }
-a:hover {
+.links:hover {
   text-decoration: none;
   color: #FFFFFF;
 }
