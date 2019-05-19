@@ -1,2 +1,2 @@
-# blog
-First Blog
+# Grovers Blog
+[Hosted in heroku](https://groversblog.herokuapp.com)
